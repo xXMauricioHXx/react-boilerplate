@@ -8,9 +8,18 @@ const Detail = ({ user, users, setUser }) => {
   const { id } = useParams();
 
   useEffect(async () => {
-    const result = await getUser(id);
-    setUser(result);
-  });
+    if (users.length) {
+      const foundUser = users.find((user) => user.id == id);
+
+      if (foundUser) {
+        setUser(foundUser);
+      }
+    } else {
+      const result = await getUser(id);
+
+      setUser(result);
+    }
+  }, [id, users, setUser]);
 
   return (
     <>
