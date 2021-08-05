@@ -1,43 +1,30 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { getUsers } from "../../services/user";
 import withUser from "../../containers/user";
+import Table from "../../components/Table";
+import Button from "../../components/Button";
 
 const Home = ({ users, setUsers }) => {
-  useEffect(async () => {
-    const result = await getUsers();
-    setUsers(result);
-  });
+  useEffect(() => {
+    async function fetchData() {
+      const result = await getUsers();
+      setUsers(result);
+    }
+    fetchData();
+  }, []);
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Phone</td>
-            <td></td>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => {
-            return (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.phone}</td>
-                <td>
-                  <Link to={`/${user.id}`}>editar</Link>
-                </td>
-                <td></td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <Table
+        cols={["Name", "Email", "Phone"]}
+        rows={users}
+        selectedRows={["name", "email", "phone"]}
+        actions={[
+          <Button style="warning" text="Edit" action={() => alert(1)} />,
+          <Button style="danger" text="Remove" action={() => alert(1)} />,
+        ]}
+      />
     </>
   );
 };
