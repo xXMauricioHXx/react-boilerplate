@@ -3,18 +3,6 @@ import Button from "./index";
 export default {
   component: Button,
   title: "Button",
-  argTypes: {
-    text: {
-      name: "type",
-      type: { name: "string", required: false },
-      control: { type: "string" },
-    },
-    type: {
-      name: "text",
-      type: { name: "string", required: false },
-      control: { type: "string" },
-    },
-  },
 };
 
 const Template = args => <Button {...args} />;
