@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "../../components/Button";
+import { Link } from "react-router-dom";
 
-const renderRows = (rows, selectedRows, actions) => {
+const renderRows = (rows, selectedRows, displayButtons) => {
   return rows?.map((row, rowIndex) => {
     return (
       <tr
@@ -24,15 +26,24 @@ const renderRows = (rows, selectedRows, actions) => {
               </td>
             ))}
 
-        {actions?.map((button, index) => {
-          return <td key={`td-actions${index}`}>{button}</td>;
-        })}
+        {displayButtons ? (
+          <>
+            <td>
+              <Link to={`/${row?.id}`}>
+                <Button style="warning" text="edit" />
+              </Link>
+            </td>
+            <td>
+              <Button style="danger" text="remove" action={() => alert(1)} />
+            </td>
+          </>
+        ) : null}
       </tr>
     );
   });
 };
 
-const Table = ({ cols, rows, selectedRows, actions }) => (
+const Table = ({ cols, rows, selectedRows, displayButtons }) => (
   <div className="w-full">
     <div className="overflow-x-scroll border-b border-gray-200 rounded shadow sm:overflow-hidden">
       <table className="min-w-full text-xs bg-white table-auto sm:text-sm">
@@ -48,7 +59,7 @@ const Table = ({ cols, rows, selectedRows, actions }) => (
           </tr>
         </thead>
         <tbody className="text-gray-600">
-          {renderRows(rows, selectedRows, actions)}
+          {renderRows(rows, selectedRows, displayButtons)}
         </tbody>
       </table>
     </div>
@@ -59,7 +70,7 @@ Table.propTypes = {
   cols: PropTypes.array,
   rows: PropTypes.array,
   selectedRows: PropTypes.array,
-  actions: PropTypes.array,
+  displayButtons: PropTypes.array,
 };
 
 export default Table;

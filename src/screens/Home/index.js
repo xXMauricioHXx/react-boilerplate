@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { getUsers } from "../../services/user";
 import withUser from "../../containers/user";
 import Table from "../../components/Table";
-import Button from "../../components/Button";
 
 const Home = ({ users, setUsers }) => {
   useEffect(() => {
@@ -20,10 +19,7 @@ const Home = ({ users, setUsers }) => {
         cols={["Name", "Email", "Phone"]}
         rows={users}
         selectedRows={["name", "email", "phone"]}
-        actions={[
-          <Button style="warning" text="Edit" action={() => alert(1)} />,
-          <Button style="danger" text="Remove" action={() => alert(1)} />,
-        ]}
+        displayButtons={true}
       />
     </>
   );

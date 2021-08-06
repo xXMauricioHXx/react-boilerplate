@@ -3,48 +3,46 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import withUser from "../../containers/user";
 import { getUser } from "../../services/user";
+import Table from "../../components/Table";
 
 const Detail = ({ user, users, setUser }) => {
   const { id } = useParams();
 
-  useEffect(async () => {
-    if (users.length) {
-      const foundUser = users.find((user) => user.id == id);
+  useEffect(() => {
+    async function fetchData() {
+      if (users.length) {
+        const foundUser = users.find(user => user.id == id);
 
-      if (foundUser) {
-        setUser(foundUser);
+        if (foundUser) {
+          setUser(foundUser);
+        }
+      } else {
+        const result = await getUser(id);
+        setUser(result);
       }
-    } else {
-      const result = await getUser(id);
-
-      setUser(result);
     }
+    fetchData();
   }, [id, users, setUser]);
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Phone</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{user?.name}</td>
-            <td>{user?.email}</td>
-            <td>{user?.phone}</td>
-          </tr>
-        </tbody>
-      </table>
+      {user ? (
+        <Table
+          cols={["Name", "Email", "Phone"]}
+          rows={[user]}
+          selectedRows={["name", "email", "phone"]}
+          displayButtons={true}
+        />
+      ) : (
+        <div>User not found</div>
+      )}
     </>
   );
 };
 
 Detail.propTypes = {
-  users: PropTypes.object.isRequired,
+  user: PropTypes.object,
+  users: PropTypes.array.isRequired,
   setUser: PropTypes.func.isRequired,
 };
 
