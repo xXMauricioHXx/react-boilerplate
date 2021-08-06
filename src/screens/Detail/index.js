@@ -11,7 +11,7 @@ const Detail = ({ user, users, setUser }) => {
   useEffect(() => {
     async function fetchData() {
       if (users.length) {
-        const foundUser = users.find(user => user.id == id);
+        const foundUser = users.find(user => user.id === Number(id));
 
         if (foundUser) {
           setUser(foundUser);

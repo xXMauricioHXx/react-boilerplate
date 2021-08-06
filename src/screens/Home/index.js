@@ -11,7 +11,7 @@ const Home = ({ users, setUsers }) => {
       setUsers(result);
     }
     fetchData();
-  }, []);
+  }, [setUsers]);
 
   return (
     <>

@@ -30,11 +30,11 @@ const renderRows = (rows, selectedRows, displayButtons) => {
           <>
             <td>
               <Link to={`/${row?.id}`}>
-                <Button style="warning" text="edit" />
+                <Button variant="warning" text="edit" />
               </Link>
             </td>
             <td>
-              <Button style="danger" text="remove" action={() => alert(1)} />
+              <Button variant="danger" text="remove" action={() => alert(1)} />
             </td>
           </>
         ) : null}
@@ -43,7 +43,7 @@ const renderRows = (rows, selectedRows, displayButtons) => {
   });
 };
 
-const Table = ({ cols, rows, selectedRows, displayButtons }) => (
+const Table = ({ cols, rows, selectedRows, displayButtons = false }) => (
   <div className="w-full">
     <div className="overflow-x-scroll border-b border-gray-200 rounded shadow sm:overflow-hidden">
       <table className="min-w-full text-xs bg-white table-auto sm:text-sm">
@@ -70,7 +70,7 @@ Table.propTypes = {
   cols: PropTypes.array,
   rows: PropTypes.array,
   selectedRows: PropTypes.array,
-  displayButtons: PropTypes.array,
+  displayButtons: PropTypes.bool,
 };
 
 export default Table;
