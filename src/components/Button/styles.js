@@ -1,5 +1,5 @@
-const basicStyle =
-  "px-2 py-2 m-1 font-bold uppercase border-b-4 border-l-2 rounded-lg shadow-md text-sm hover:opacity-75";
+const basicStyle = "px-2 py-2 m-1 font-bold uppercase text-sm hover:opacity-75";
+const borderStyle = "border-b-4 border-l-2 rounded-lg shadow-md";
 
 const buttonStyles = {
   default: "bg-gray-100 border-gray-200 active:bg-gray-100",
@@ -11,9 +11,8 @@ const buttonStyles = {
   info: "bg-purple-500 border-purple-600 text-white active:bg-purple-600",
 };
 
-const getStyle = style => {
-  if (!style) return buttonStyles.default;
-  return buttonStyles[style];
+const getStyle = (style = buttonStyles.default) => {
+  return [borderStyle, buttonStyles[style]].join(" ");
 };
 
 const renderStyle = style => {

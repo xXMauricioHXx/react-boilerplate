@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../../components/Button";
-import { Link } from "react-router-dom";
+import Anchor from "../../components/Anchor";
 
 const renderRows = (rows, selectedRows, displayButtons) => {
   return rows?.map((row, rowIndex) => {
     return (
       <tr
         key={`tr${rowIndex}`}
-        className={`${rowIndex % 2 === 1 ? "bg-gray-100" : ""}`}
+        className={`${rowIndex % 2 === 1 ? "bg-gray-50" : ""}`}
       >
         {selectedRows?.length
           ? selectedRows.map((selectedRow, index) => {
@@ -29,12 +28,10 @@ const renderRows = (rows, selectedRows, displayButtons) => {
         {displayButtons ? (
           <>
             <td>
-              <Link to={`/${row?.id}`}>
-                <Button variant="warning" text="edit" />
-              </Link>
+              <Anchor variant="warning" text="edit" route={`/${row?.id}`} />
             </td>
             <td>
-              <Button variant="danger" text="remove" action={() => alert(1)} />
+              <Anchor variant="danger" text="remove" route={`/`} />
             </td>
           </>
         ) : null}
@@ -46,8 +43,8 @@ const renderRows = (rows, selectedRows, displayButtons) => {
 const Table = ({ cols, rows, selectedRows, displayButtons = false }) => (
   <div className="w-full">
     <div className="overflow-x-scroll border-b border-gray-200 rounded shadow sm:overflow-hidden">
-      <table className="min-w-full text-xs bg-white table-auto sm:text-sm">
-        <thead className="font-semibold text-left uppercase border-b-2 border-black">
+      <table className="min-w-full text-sm divide-y divide-gray-200 table-auto">
+        <thead className="font-semibold tracking-wider text-left text-gray-500 uppercase bg-gray-100">
           <tr>
             {cols?.map((thead, index) => {
               return (
@@ -56,9 +53,15 @@ const Table = ({ cols, rows, selectedRows, displayButtons = false }) => (
                 </th>
               );
             })}
+
+            {displayButtons ? (
+              <>
+                <th colspan="2" key={`th-buttons`} className="px-4 py-4"></th>
+              </>
+            ) : null}
           </tr>
         </thead>
-        <tbody className="text-gray-600">
+        <tbody className="text-gray-600 divide-y divide-gray-200">
           {renderRows(rows, selectedRows, displayButtons)}
         </tbody>
       </table>
