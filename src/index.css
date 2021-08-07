@@ -16,3 +16,67 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.only-transition {
+  transition: 1s;
+}
+
+.out {
+  left: -420px;
+}
+
+.in {
+  left: 0px;
+}
+
+.right-percent-negative {
+  right: -20%;
+}
+
+.right-percent-positive {
+  right: 2%;
+}
+
+@media (max-width: 280px) {
+  .right-percent-negative {
+    right: -60%;
+  }
+}
+
+@media (min-width: 281px) and (max-width: 320px) {
+  .right-percent-negative {
+    right: -40%;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 360px) {
+  .right-percent-negative {
+    right: -25%;
+  }
+
+  .right-percent-positive {
+    right: 16%;
+  }
+}
+
+@media (min-width: 361px) and (max-width: 375px) {
+  .right-percent-positive {
+    right: 5%;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 414px) {
+  .right-percent-negative {
+    right: -10%;
+  }
+
+  .right-percent-positive {
+    right: 4%;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 540px) {
+  .right-percent-negative {
+    right: -13%;
+  }
+}

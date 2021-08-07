@@ -6,6 +6,8 @@ import Router from "./router";
 import { Provider } from "react-redux";
 import { enhancer } from "./enhancer";
 import { rootReducer } from "./store/reducers";
+import { items } from "./nav-items";
+import Nav from "./components/Nav";
 import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 
@@ -17,9 +19,16 @@ const store = configureStore({
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <div className="relative flex">
+        <BrowserRouter>
+          <div className="md:relative md:w-2/12 w-full">
+            <Nav items={items} />
+          </div>
+          <div className="md:p-20 w-10/12">
+            <Router />
+          </div>
+        </BrowserRouter>
+      </div>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
