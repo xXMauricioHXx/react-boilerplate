@@ -30,7 +30,7 @@ code {
 }
 
 .right-percent-negative {
-  right: -20%;
+  right: -26%;
 }
 
 .right-percent-positive {
@@ -39,23 +39,23 @@ code {
 
 @media (max-width: 280px) {
   .right-percent-negative {
-    right: -60%;
+    right: -69%;
   }
 }
 
 @media (min-width: 281px) and (max-width: 320px) {
   .right-percent-negative {
-    right: -40%;
+    right: -47%;
   }
 }
 
 @media (min-width: 321px) and (max-width: 360px) {
   .right-percent-negative {
-    right: -25%;
+    right: -31%;
   }
 
   .right-percent-positive {
-    right: 16%;
+    right: 4%;
   }
 }
 
@@ -67,7 +67,7 @@ code {
 
 @media (min-width: 376px) and (max-width: 414px) {
   .right-percent-negative {
-    right: -10%;
+    right: -16%;
   }
 
   .right-percent-positive {
@@ -75,8 +75,12 @@ code {
   }
 }
 
-@media (min-width: 414px) and (max-width: 540px) {
+@media (min-width: 415px) and (max-width: 540px) {
   .right-percent-negative {
-    right: -13%;
+    right: -15%;
+  }
+
+  .out {
+    left: -557px;
   }
 }

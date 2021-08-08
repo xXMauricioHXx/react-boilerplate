@@ -24,7 +24,7 @@ ReactDOM.render(
           <div className="md:relative md:w-2/12 w-full">
             <Nav items={items} />
           </div>
-          <div className="md:p-20 w-10/12">
+          <div className="md:p-20 md:w-10/12 pt-14 w-full">
             <Router />
           </div>
         </BrowserRouter>
