@@ -84,3 +84,9 @@ code {
     left: -557px;
   }
 }
+
+@media (min-width: 541px) and (max-width: 760px) {
+  .out {
+    left: -115%;
+  }
+}
